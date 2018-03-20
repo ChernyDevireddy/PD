@@ -7,7 +7,7 @@
 ####
 
 team_name = 'E3'
-strategy_name = 'Collude but retaliate'
+strategy_name = 'Always betray'
 strategy_description = '''\
 Collude first round. Collude, except in a round after getting 
 a severe punishment.'''
@@ -22,7 +22,21 @@ def move(my_history, their_history, my_score, their_score):
     
     Returns 'c' or 'b' for collude or betray.
     '''
-    if len(my_history)==0: # It's the first round; collude.
+    def test_move(my_history, their_history, my_score, their_score, result):
+        if test_move(my_history='',
+            their_history='',
+            my_score = -250,
+            their_score = -250,
+            result='b'):
+                print 'Test passed'
+
+def test_move(my_history='bbb',
+    their_history='bbb',
+    my_score = -250,
+    their_score = -250,
+    result='b')      
+
+    if len(my_history)==0: # It's the first round; betray.
         return 'c'
     elif my_history[-1]=='c' and their_history[-1]=='b':
         return 'b' # Betray if they were severely punished last time,
